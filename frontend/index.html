@@ -30,11 +30,11 @@
     <!-- DIV VUE.JS -->
     <div id="app">
       <header></header>
-      <main>
-        <div class="container p-2">
+      <main class="">
+        <div class="container p-2 position-relative center">
           <div class="row justify-content-center align-items-center g-5">
-            <div v-for="disc in discs" class="col-4">
-              <div class="card">
+            <div v-for="(disc,index) in discs" class="col-4">
+              <div @click="printCardInfo(index)" class="card">
                 <img :src="disc.poster" class="card-img-top" alt="..." />
                 <div class="card-body text-center">
                   <h5 class="card-title">{{disc.title}}</h5>
@@ -42,6 +42,24 @@
                   <p class="card-text">{{disc.year}}</p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div v-if="viewCardInfo" class="container-card-info">
+            <div class="card-info">
+              <div class="card">
+                <img :src="cardInfo.poster" class="card-img-top" alt="..." />
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{cardInfo.title}}</h5>
+                  <p href="#" class="">{{cardInfo.author}}</p>
+                  <p class="card-text">{{cardInfo.year}}</p>
+                </div>
+              </div>
+              <button
+                @click="closeCardInfo()"
+                type="button"
+                class="btn-close btn-close-white"
+                aria-label="Close"
+              ></button>
             </div>
           </div>
         </div>
